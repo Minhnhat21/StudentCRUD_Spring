@@ -20,6 +20,10 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
+    public Student getStudentById(Long id) {
+        return studentRepository.findById(id).get();
+    }
+
     public Student addNewStudent(Student student) {
         return studentRepository.save(student);
     }
@@ -31,7 +35,18 @@ public class StudentService {
         updateStudent.setDob(student.getDob());
         return studentRepository.save(updateStudent);
     }
+
     public void deleteStudentById(Long id) {
         studentRepository.deleteById(id);
+    }
+
+    public void deleteAllStudent() {
+        studentRepository.deleteAll();
+    }
+
+    public List<Student> searchStudentByName(String name) {
+        if(!studentRepository.findStudentByName(name).isEmpty())
+            return studentRepository.findStudentByName(name);
+        return studentRepository.findAll();
     }
 }

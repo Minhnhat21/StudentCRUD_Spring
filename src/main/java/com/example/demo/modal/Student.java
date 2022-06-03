@@ -1,19 +1,27 @@
 package com.example.demo.modal;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.Period;
 
-@Entity
+@Entity //mapping sql
 @Table
+
 public class Student {
 
-    @Id
+    @Id //tự tăng
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @NotNull(message = "Thiếu username")
     private String name;
+    @Email(message = "Email không hợp lệ")
     private String email;
     private LocalDate dob;
+
 
     @Transient
     private int age;
